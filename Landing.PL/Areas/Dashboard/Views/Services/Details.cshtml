@@ -1,0 +1,35 @@
+﻿@model ServiceDetailsVM
+
+@section titleStart {
+    Services
+}
+@section titleSeceond {
+    Details Service
+}
+
+@section Header {
+    Details Service
+}
+<div class="col-md-12">
+    <div class="card card-primary">
+        <div class="card-header">
+            <h3 class="card-title">Service Name is @Model.Name</h3>
+        </div>
+        <div class="card-body">
+            <div class="post">
+                <img class="img-lg img-rounded" src="~/Files/images/@Model.ImageName" alt="this is service image :@Model.Name">
+
+                <p class="font-weight-bolder " style="color:black">
+                    Description :@Html.Raw(@Model.Description)
+                </p>
+                <p class="font-weight-bold text-sm">
+                    Status is : @(Model.IsDeleted ? "Deleted " : "Active")
+                </p>
+            </div>
+        </div>
+        <div class="card-footer">
+            <span class=" text-sm">CreatedAt : @Model.CreatedAt</span>
+        </div>
+        </div>
+        </div>
+

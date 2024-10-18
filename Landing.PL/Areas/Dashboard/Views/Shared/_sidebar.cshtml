@@ -1,8 +1,13 @@
-﻿<aside class="main-sidebar sidebar-dark-primary elevation-4">
+﻿@using Microsoft.AspNetCore.Identity
+@using Landing.DAL.Models
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
         <img src="~/Dashboard/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-        <span class="brand-text font-weight-light">AdminLTE 3</span>
+        <span class="brand-text font-weight-light">MyDashboard Landing</span>
     </a>
 
     <!-- Sidebar -->
@@ -13,7 +18,10 @@
                 <img src="~/Dashboard/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block">Alexander Pierce</a>
+                     @if (SignInManager.IsSignedIn(User))
+                {
+                        <span class="font-weight-bold text-light">Hello @User.Identity?.Name!</span>
+                }
             </div>
         </div>
 
@@ -38,37 +46,209 @@
                     <a href="#" class="nav-link active">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
-                            Starter Pages
+                            Services
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="#" class="nav-link active">
+                            <a asp-controller="Services" asp-action="Index" class="nav-link active">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Active Page</p>
+                                <p>All Services</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a asp-controller="Services" asp-action="Create" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Inactive Page</p>
+                                <p>Create Service</p>
                             </a>
                         </li>
+                     
                     </ul>
                 </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-th"></i>
+                <li class="nav-item menu-open">
+                    <a href="#" class="nav-link active">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
-                            Simple Link
-                            <span class="right badge badge-danger">New</span>
+                            Sliders
+                            <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a asp-controller="Sliders" asp-action="Index" class="nav-link active">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>All Sliders</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a asp-controller="Sliders" asp-action="Create" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Create Slider</p>
+                            </a>
+                        </li>
+
+                    </ul>
                 </li>
+
+                <li class="nav-item menu-open">
+                    <a href="#" class="nav-link active">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p>
+                            Portfolios
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a asp-controller="Portfolios" asp-action="Index" class="nav-link active">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>All Portfolios</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a asp-controller="Portfolios" asp-action="Create" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Create Portfolio</p>
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+                <li class="nav-item menu-open">
+                    <a href="#" class="nav-link active">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p>
+                         Items                         
+                         <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a asp-controller="Items" asp-action="Index" class="nav-link active">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>All Items</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a asp-controller="Items" asp-action="Create" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Create Item</p>
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+                        <li class="nav-item menu-open">
+                    <a href="#" class="nav-link active">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p>
+                         Clients                         
+                         <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a asp-controller="Clients" asp-action="Index" class="nav-link active">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>All Clients</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a asp-controller="Clients" asp-action="Create" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Create Client</p>
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+                <li class="nav-item menu-open">
+                    <a href="#" class="nav-link active">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p>
+                            Skills
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a asp-controller="Skills" asp-action="Index" class="nav-link active">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>All Skills</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a asp-controller="Skills" asp-action="Create" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Create Skill</p>
+                            </a>
+                        </li>
+                        </ul>
+                        <li class="nav-item menu-open">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-tachometer-alt"></i>
+                                <p>
+                                    Prices
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a asp-controller="Prices" asp-action="Index" class="nav-link ">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>All Prices</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a asp-controller="Prices" asp-action="Create" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Create Price</p>
+                                    </a>
+                                </li>
+
+                    </ul>
+                </li>
+                        <li class="nav-item menu-open">
+                            <a href="#" class="nav-link active">
+                                <i class="nav-icon fas fa-tachometer-alt"></i>
+                                <p>
+                                    Blogs
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a asp-controller="Blogs" asp-action="Index" class="nav-link active">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>All Blogs</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a asp-controller="Blogs" asp-action="Create" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Create Blog</p>
+                                    </a>
+                                </li>
+
+              
             </ul>
+                     
+                                @if (SignInManager.IsSignedIn(User))
+                                {
+                    <li class="nav-item d-flex gap-1 p-1">
+                        
+                                <form class="form-inline " asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Account", "Login", new { area = "Identity" })">
+                                    <img src="~/Dashboard/img/logout.svg" width="20" alt="logout logo" style="margin:8px;" />
+                            <button type="submit" class="btn btn-link text-danger">Logout</button>
+                                </form>
+
+                            </li>
+                                }
+              </ul>
         </nav>
         <!-- /.sidebar-menu -->
     </div>
     <!-- /.sidebar -->
 </aside>
+

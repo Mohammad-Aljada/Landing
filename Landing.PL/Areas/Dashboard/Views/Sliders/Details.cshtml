@@ -1,0 +1,42 @@
+﻿@model SliderDetailsVM
+@section titleStart {
+    Sliders
+}
+@section titleSeceond {
+    Details Slider
+}
+
+@section Header {
+ Detsils Slider
+}
+<div class="col-md-12">
+    <div class="card card-primary">
+        <div class="card-header">
+            <h3 class="card-title">Title : @Model.Title</h3>
+        </div>
+        <div class="card-body">
+
+<div class="post">
+        <img class="img-lg img-rounded" src="~/Files/images/@Model.ImageName" alt="this is slider image :@Model.Title">
+      
+    <!-- /.user-block -->
+    <p class="font-weight-bolder ">
+       Description : @Model.Description
+    </p>
+     <p class="font-weight-bold text-sm">
+       Status is : @(Model.IsDeleted ? "Deleted " : "Active")
+      </p>
+
+    <p>
+        <a href="@Model.Link" class="link-black text-sm"><i class="fas fa-link mr-1"></i>Read More</a>
+    </p>
+</div>
+
+</div>
+
+<div class="card-footer">
+    <span class=" text-sm">CreatedAt : @Model.CreatedAt</span>
+</div>
+
+</div>
+</div>

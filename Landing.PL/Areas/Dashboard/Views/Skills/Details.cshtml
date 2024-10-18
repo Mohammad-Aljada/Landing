@@ -1,0 +1,39 @@
+﻿@model SkillDetailsVM
+@section titleStart {
+  Skills
+}
+@section titleSeceond {
+    Details  Skill
+}
+
+@section Header {
+  Details  Skill
+}
+<div class="col-md-12">
+    <div class="card card-primary">
+        <div class="card-header">
+            <h3 class="card-title">Skill Name is @Model.Name</h3>
+        </div>
+        <div class="card-body">
+            <div class="SkillValue">
+            <h3>Skill Value : </h3>
+            <span class="d-flex justify-content-md-end">@Model.Value%</span>
+            <div class="progress mb-3">
+                <div class="progress-bar bg-success" role="progressbar" aria-valuenow="@Model.Value" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                    <span class="sr-only">@Model.Value%</span>
+                </div>
+            </div>
+            </div>
+
+            <p class="font-weight-bold text-sm">
+                Status is : @(Model.IsDeleted ? "Deleted " : "Active")
+            </p>
+        </div>
+        <div class="card-footer">
+            <span class=" text-sm">CreatedAt : @Model.CreatedAt</span>
+        </div>
+    </div>
+</div>
+
+
+

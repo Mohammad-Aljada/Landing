@@ -1,0 +1,52 @@
+﻿@model PriceFormVM
+@section titleStart {
+  Prices
+}
+@section titleSeceond {
+    Edit  Price
+}
+
+@section Header {
+ Prices
+}
+<div class="col-md-12">
+    <div class="card card-info">
+        <div class="card-header">
+            <h3 class="card-title">Edit Price</h3>
+        </div>
+        <!-- /.card-header -->
+        <!-- form start -->
+
+        <form asp-controller="Prices" asp-action="Edit">
+            <div class="card-body">
+                <input type="hidden" asp-for="Id" />
+                <div class="form-group">
+                    <label asp-for="Name">Subscripe Name</label>
+                    <input asp-for="Name" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label asp-for="InitalPrice"> Inital Price</label>
+                    <input asp-for="InitalPrice" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label asp-for="Discount"> Discount</label>
+                    <input asp-for="Discount" class="form-control">
+                </div>
+                
+
+                <div class="form-group">
+                    <label asp-for="IsDeleted">IsDeleted</label>
+                    <input asp-for="IsDeleted" />
+                    <span>@(Model.IsDeleted ? "Deleted" : "Active")</span>
+                </div>
+
+
+            </div>
+            <!-- /.card-body -->
+
+            <div class="card-footer">
+                <button type="submit" class="btn btn-info">Edit</button>
+            </div>
+        </form>
+    </div>
+</div>

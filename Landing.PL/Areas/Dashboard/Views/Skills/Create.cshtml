@@ -1,0 +1,42 @@
+﻿@model SkillFormVM
+
+@section titleStart {
+  Skills
+}
+@section titleSeceond {
+    Create  Skill
+}
+
+@section Header {
+Skills
+}
+<div class="col-md-12">
+    <div class="card card-primary">
+        <div class="card-header">
+            <h3 class="card-title">Create Skill</h3>
+        </div>
+        <!-- /.card-header -->
+        <!-- form start -->
+
+        <form asp-controller="Skills" asp-action="Create">
+            <div class="card-body">
+                <div class="form-group">
+                    <label asp-for="Name"> Skill Name</label>
+                    <input asp-for="Name" class="form-control" placeholder="Enter Skill Name Required">
+                </div>
+                <div class="form-group">
+                    <label asp-for="Value"> Skill Name</label>
+                    <input asp-for="Value" class="form-control" placeholder="Enter Value Skill Required">
+                </div>
+            </div>
+            <!-- /.card-body -->
+
+            <div class="card-footer">
+                <button type="submit" class="btn btn-primary">Create</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+

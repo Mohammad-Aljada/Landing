@@ -1,0 +1,63 @@
+﻿@model BlogFormVM
+
+@section titleStart {
+  Blogs
+}
+@section titleSeceond {
+    Create  Blog
+}
+
+@section Header {
+Blogs
+}
+<div class="col-md-12">
+    <div class="card card-primary">
+        <div class="card-header">
+            <h3 class="card-title">Create Blog</h3>
+        </div>
+        <!-- /.card-header -->
+        <!-- form start -->
+
+        <form asp-controller="Blogs" asp-action="Create">
+            <div class="card-body">
+                <div class="form-group">
+                    <label asp-for="Title">Blog Title</label>
+                    <input asp-for="Title" class="form-control" placeholder="Enter Blog Title Required">
+                </div>
+                <div class="form-group">
+                    <label asp-for="DescriptionShort"> Description Short</label>
+                    <input asp-for="DescriptionShort" class="form-control" placeholder="Enter Description Short  Required">
+                </div>
+                <div class="form-group">
+                    <label asp-for="DescriptionLong">Description Long</label>
+                    <input asp-for="DescriptionLong" class="form-control textarea" placeholder="Enter Description Long Required">
+                </div>
+            </div>
+            <!-- /.card-body -->
+
+            <div class="card-footer">
+                <button type="submit" class="btn btn-primary">Create</button>
+            </div>
+        </form>
+    </div>
+</div>
+@section script{
+    <script src="https://cdn.tiny.cloud/1/6flbm5mj6i3yf3fgi2p9ij1bsfnjsu15kmtzer7qs3vfeq43/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
+
+    <script>
+        tinymce.init({
+            selector: '.textarea',
+            plugins: [
+                // Core editing features
+                'anchor', 'autolink', 'charmap', 'codesample', 'emoticons', 'image', 'link', 'lists', 'media', 'searchreplace', 'table', 'visualblocks', 'wordcount',
+                // Your account includes a free trial of TinyMCE premium features
+                // Try the most popular premium features until Oct 27, 2024:
+                'checklist', 'mediaembed', 'casechange', 'export', 'formatpainter', 'pageembed', 'a11ychecker', 'tinymcespellchecker', 'permanentpen', 'powerpaste', 'advtable', 'advcode', 'editimage', 'advtemplate', 'ai', 'mentions', 'tinycomments', 'tableofcontents', 'footnotes', 'mergetags', 'autocorrect', 'typography', 'inlinecss', 'markdown',
+            ],
+            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+        });
+        
+        </script>
+}
+
+

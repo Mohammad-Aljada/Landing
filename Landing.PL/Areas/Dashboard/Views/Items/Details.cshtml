@@ -1,0 +1,34 @@
+﻿@model  ItemDetailsVM
+
+@section titleStart {
+  Items
+}
+@section titleSeceond {
+    Details Item
+}
+
+@section Header {
+    Details Item
+}
+<div class="col-md-12">
+    <div class="card card-primary">
+        <div class="card-header">
+            <h3 class="card-title">Item Title is @Model.Title</h3>
+        </div>
+        <div class="card-body">
+            <img src="~/Files/images/@Model.ImageName" width="50" alt="this item photo : @Model.Title" />
+            <p class="font-weight-bolder">
+                Description :@Html.Raw(@Model.Description)
+            </p>
+            <span class="font-weight-bolder text-primary">Portfolio is : @Model.Portfolios</span>
+
+            <p class="font-weight-bold text-sm">
+                Status is : @(Model.IsDeleted ? "Deleted " : "Active")
+            </p>
+        </div>
+        <div class="card-footer">
+            <span class=" text-sm">CreatedAt : @Model.CreatedAt</span>
+        </div>
+    </div>
+</div>
+

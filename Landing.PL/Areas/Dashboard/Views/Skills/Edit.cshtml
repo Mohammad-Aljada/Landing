@@ -1,0 +1,47 @@
+﻿@model SkillFormVM
+@section titleStart {
+  Skills
+}
+@section titleSeceond {
+    Edit  Skill
+}
+
+@section Header {
+ Skills
+}
+<div class="col-md-12">
+    <div class="card card-info">
+        <div class="card-header">
+            <h3 class="card-title">Edit Skill</h3>
+        </div>
+        <!-- /.card-header -->
+        <!-- form start -->
+
+        <form asp-controller="Skills" asp-action="Edit">
+            <div class="card-body">
+                <input type="hidden" asp-for="Id" />
+                <div class="form-group">
+                    <label asp-for="Name">Skill Name</label>
+                    <input asp-for="Name" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label asp-for="Value"> Skill Name</label>
+                    <input asp-for="Value" class="form-control" >
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="IsDeleted">IsDeleted</label>
+                    <input asp-for="IsDeleted" />
+                    <span>@(Model.IsDeleted ? "Deleted" : "Active")</span>
+                </div>
+
+
+            </div>
+            <!-- /.card-body -->
+
+            <div class="card-footer">
+                <button type="submit" class="btn btn-info">Edit</button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,36 @@
+﻿@model PriceDetailsVM
+@section titleStart {
+  Prices
+}
+@section titleSeceond {
+    Details  Price
+}
+
+@section Header {
+  Details  Price
+}
+<div class="col-md-12">
+    <div class="card card-primary">
+        <div class="card-header">
+            <h3 class="card-title">subscripe Name is @Model.Name</h3>
+        </div>
+        <div class="card-body ">
+            <div class="d-flex flex-md-column gap-3">
+                <span class="font-weight-bolder ">Initial Price is : @Model.InitalPrice$</span>
+                <span class="font-weight-bold text-secondary text-md">Discount is : @Model.Discount%</span>
+                <span class="font-weight-bolder text-primary">Final Price is : @Model.FinalPrice$</span>
+            </div>
+       
+
+            <p class="font-weight-bold text-sm">
+                Status is : @(Model.IsDeleted ? "Deleted " : "Active")
+            </p>
+        </div>
+        <div class="card-footer">
+            <span class=" text-sm">CreatedAt : @Model.CreatedAt</span>
+        </div>
+    </div>
+    </div>
+
+
+

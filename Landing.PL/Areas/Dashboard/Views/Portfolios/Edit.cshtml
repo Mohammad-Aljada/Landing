@@ -1,0 +1,43 @@
+﻿@model PortfolioFormVM
+@section titleStart {
+  Portfolios
+}
+@section titleSeceond {
+    Edit  Portfolio
+}
+
+@section Header {
+ Portfolios
+}
+<div class="col-md-12">
+    <div class="card card-info">
+        <div class="card-header">
+            <h3 class="card-title">Edit Portfolio</h3>
+        </div>
+        <!-- /.card-header -->
+        <!-- form start -->
+
+        <form asp-controller="Portfolios" asp-action="Edit">
+            <div class="card-body">
+                <input type="hidden" asp-for="Id" />
+                <div class="form-group">
+                    <label asp-for="Name">Portfolio Name</label>
+                    <input asp-for="Name" class="form-control">
+                </div>
+             
+                <div class="form-group">
+                    <label asp-for="IsDeleted">IsDeleted</label>
+                    <input asp-for="IsDeleted" />
+                    <span>@(Model.IsDeleted ? "Deleted" : "Active")</span>
+                </div>
+               
+
+            </div>
+            <!-- /.card-body -->
+
+            <div class="card-footer">
+                <button type="submit" class="btn btn-info">Edit</button>
+            </div>
+        </form>
+    </div>
+</div>

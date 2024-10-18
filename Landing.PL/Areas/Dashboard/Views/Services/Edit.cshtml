@@ -1,0 +1,84 @@
+﻿@model ServiceFormVM
+
+@section titleStart {
+    Services
+}
+@section titleSeceond {
+    Edit Service
+}
+
+@section Header {
+  Services
+}
+<div class="col-md-12">
+    <div class="card card-info">
+        <div class="card-header">
+            <h3 class="card-title">Edit Service</h3>
+        </div>
+        <!-- /.card-header -->
+        <!-- form start -->
+
+        <form asp-controller="Services" asp-action="Edit" enctype="multipart/form-data">
+            <div class="card-body">
+                <input type="hidden" asp-for="Id" />
+                <input type="hidden" asp-for="ImageName"/>
+                <div class="form-group">
+                    <label asp-for="Name">Service Name</label>
+                    <input asp-for="Name" class="form-control" >
+                </div>
+                <div class="form-group">
+                    <label asp-for="Description">Description</label>
+                    <input asp-for="Description" class="form-control textarea" >
+                </div>
+                <div class="form-group">
+                    <label asp-for="IsDeleted">IsDeleted</label>
+                    <input asp-for="IsDeleted" />
+                    <span>@(Model.IsDeleted?"Deleted" : "Active")</span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Image">Upload Image</label>
+                    <input asp-for="Image" class="imageInput">
+                </div>
+                <div class="form-group">
+                    <img src="#" id="imagePreview" width="50" style="display:none" alt="this is image service" />
+                </div>
+
+            </div>
+            <!-- /.card-body -->
+
+            <div class="card-footer">
+                <button type="submit" class="btn btn-info">Edit</button>
+            </div>
+        </form>
+    </div>
+</div>
+@section script {
+    <script src="https://cdn.tiny.cloud/1/6flbm5mj6i3yf3fgi2p9ij1bsfnjsu15kmtzer7qs3vfeq43/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
+
+    <script>
+        tinymce.init({
+            selector: '.textarea',
+            plugins: [
+                // Core editing features
+                'anchor', 'autolink', 'charmap', 'codesample', 'emoticons', 'image', 'link', 'lists', 'media', 'searchreplace', 'table', 'visualblocks', 'wordcount',
+                // Your account includes a free trial of TinyMCE premium features
+                // Try the most popular premium features until Oct 27, 2024:
+                'checklist', 'mediaembed', 'casechange', 'export', 'formatpainter', 'pageembed', 'a11ychecker', 'tinymcespellchecker', 'permanentpen', 'powerpaste', 'advtable', 'advcode', 'editimage', 'advtemplate', 'ai', 'mentions', 'tinycomments', 'tableofcontents', 'footnotes', 'mergetags', 'autocorrect', 'typography', 'inlinecss', 'markdown',
+            ],
+            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+        });
+        document.querySelector(".imageInput").addEventListener("change", (event) => {
+            const file = event.target.files[0];
+            const imagePreview = document.querySelector("#imagePreview");
+
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    imagePreview.src = e.target.result;
+                    imagePreview.style.display = "block";
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
+}

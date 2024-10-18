@@ -1,0 +1,35 @@
+﻿@model BlogDetailsVM
+
+@section titleStart {
+    Blogs
+}
+@section titleSeceond {
+    Details Blog
+}
+
+@section Header {
+    Details Blog
+}
+<div class="col-md-12">
+    <div class="card card-primary">
+        <div class="card-header">
+            <h3 class="card-title">Blog Title is @Model.Title</h3>
+        </div>
+        <div class="card-body">
+           
+
+                <p class="font-weight-bolder " style="color:black">
+                    Description Short :@Model.DescriptionShort
+                </p>
+            <p class="font-weight-bolder " style="color:black">
+                Description Long :@Html.Raw(@Model.DescriptionLong)
+            </p>
+             
+        </div>
+        <div class="card-footer">
+            <span class=" text-sm">CreatedAt : @Model.CreatedAt</span>
+        </div>
+    </div>
+</div>
+
+
