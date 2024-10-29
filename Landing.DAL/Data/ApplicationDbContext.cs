@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection.Emit;
 
 namespace Landing.DAL.Data
 {
@@ -34,6 +35,8 @@ namespace Landing.DAL.Data
                 NormalizedUserName = "SUPERADMIN@SUPERADMIN.com",
                 Email = "SuperAdmin@SuperAdmin.com",
                 NormalizedEmail = "SUPERADMIN@SUPERADMIN.com",
+                Address = "Tulkerm",
+                PhoneNumber = "0568524048",
                 EmailConfirmed = true
             };
             SuperAdminUser.PasswordHash = hasher.HashPassword(SuperAdminUser, "Avatar@1234");
@@ -44,6 +47,9 @@ namespace Landing.DAL.Data
                 NormalizedUserName = "ADMIN@ADMIN.com",
                 Email = "Admin@Admin.com",
                 NormalizedEmail = "ADMIN@ADMIN.com",
+                Address = "Tulkerm",
+                PhoneNumber = "0568524048",
+
                 EmailConfirmed = true
             };
             AdminUser.PasswordHash = hasher.HashPassword(AdminUser, "Avatar@1234");
@@ -55,6 +61,8 @@ namespace Landing.DAL.Data
                 NormalizedUserName = "USER@USER.com",
                 Email = "User@User.com",
                 NormalizedEmail = "USER@USER.com",
+                Address = "Tulkerm",
+                PhoneNumber = "0568524048",
                 EmailConfirmed = true
             };
             User.PasswordHash = hasher.HashPassword(User, "Avatar@1234");
@@ -68,6 +76,20 @@ namespace Landing.DAL.Data
                 new IdentityUserRole<string> { RoleId = RoleUserId, UserId = User.Id }
 
                 );
+            builder.Entity<Comment>()
+           .HasOne(c => c.Blog)
+           .WithMany(b => b.Comments)
+           .HasForeignKey(c => c.BlogId);
+
+            builder.Entity<Comment>()
+                .HasOne(c => c.User)
+                .WithMany()
+                .HasForeignKey(c => c.UserId);
+
+            builder.Entity<ApplicationUser>()
+           .HasOne(u => u.Price)
+           .WithMany(p => p.Users)
+           .HasForeignKey(u => u.PriceId);
         }
         public DbSet<Service> Services { get; set; }
         public DbSet<Slider> Sliders { get; set; }
@@ -79,5 +101,8 @@ namespace Landing.DAL.Data
         public DbSet<Skill> Skills { get; set; }
         public DbSet<Price> Prices { get; set; }
         public DbSet<Blog> Blogs { get; set; }
+        public DbSet<Team> Teams { get; set; }
+        public DbSet<Comment> Comments { get; set; }
+
     }
 }

@@ -15,6 +15,9 @@ namespace Landing.DAL.Models
         public int Discount { get; set; }
         public bool IsDeleted { get; set; }
         public int FinalPrice { get; set; }
+        public List<string> Features { get; set; }
         public DateTime CreatedAt { get; set; }
+        public ICollection<ApplicationUser> Users { get; set; }
+
     }
 }

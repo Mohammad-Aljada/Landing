@@ -1,0 +1,87 @@
+﻿@model ProfileVM
+
+@{
+    ViewData["Title"] = "Profile";
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+<div class="page-title dark-background">
+    <div class="container position-relative">
+        <h1>Profile</h1>
+        <p>Esse dolorum voluptatum ullam est sint nemo et est ipsa porro placeat quibusdam quia assumenda numquam molestias.</p>
+        <nav class="breadcrumbs">
+            <ol>
+                <li><a asp-controller="Account" asp-action="Index">Home</a></li>
+                <li class="current">Profile</li>
+            </ol>
+        </nav>
+    </div>
+</div><!-- End Page Title -->
+
+<div class="container">
+    <div class="row">
+        <!-- Profile Card -->
+        <div class="col-12 col-lg-4 mb-4 mt-2">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    @if (!string.IsNullOrEmpty(Model.ImageName))
+                    {
+                        <img src="~/Files/images/@Model.ImageName" alt="Your profile photo" class="rounded-circle img-fluid" style="width: 150px;" />
+                    }
+                    else
+                    {
+                        <img src="~/Files/images/default-profile.webp" alt="Default profile photo" class="rounded-circle img-fluid" style="width: 150px;" />
+                    }                        
+                    <h5 class="my-3">@Model.UserName</h5>
+                    <p class="text-muted mb-1">Your Plan is : @Model.Price</p>
+                    <p class="text-muted mb-4">@Model.Address</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Details Card -->
+        <div class="col-12 col-lg-8 mb-4 mt-2">
+            <div class="card h-100">
+                <div class="card-body">
+                    <div class="row mb-3">
+                        <div class="col-sm-4">
+                            <p class="mb-0 fw-bold">Full Name</p>
+                        </div>
+                        <div class="col-sm-8">
+                            <p class="text-muted mb-0">@Model.UserName</p>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row mb-3 ">
+                        <div class="col-sm-4">
+                            <p class="mb-0 fw-bold">Email</p>
+                        </div>
+                        <div class="col-sm-8">
+                            <p class="text-muted mb-0">@Model.Email</p>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row mb-3">
+                        <div class="col-sm-4">
+                            <p class="mb-0 fw-bold">Phone</p>
+                        </div>
+                        <div class="col-sm-8">
+                            <p class="text-muted mb-0">@Model.PhoneNumber</p>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <p class="mb-0 fw-bold">Address</p>
+                        </div>
+                        <div class="col-sm-8">
+                            <p class="text-muted mb-0">@Model.Address</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,122 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var blogs = ViewData["blogVMs"] as IEnumerable<BlogDisplayVM>;
+    var currentpage = ViewData["CurrentPage"];
+
+}
+
+<!-- Page Title -->
+<div class="page-title dark-background">
+    <div class="container position-relative">
+        <h1>Blog</h1>
+        <p>Esse dolorum voluptatum ullam est sint nemo et est ipsa porro placeat quibusdam quia assumenda numquam molestias.</p>
+        <nav class="breadcrumbs">
+            <ol>
+                <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+                <li class="current">Blog</li>
+            </ol>
+        </nav>
+    </div>
+</div><!-- End Page Title -->
+<!-- Blog Posts Section -->
+<section id="blog-posts" class="blog-posts section">
+
+    <div class="container">
+        <div class="row gy-4">
+
+             @if (blogs != null && blogs.Any())
+            {
+                @foreach (var item in blogs)
+                {
+                    <div class="col-lg-4">
+                        <article>
+
+                            <div class="post-img">
+                                <img src="~/Files/images/@item.ImageName" alt="@item.Title" class="img-fluid">
+                            </div>
+
+                            <p class="post-category">@item.DescriptionShort</p>
+
+                            <h2 class="title">
+                                <a asp-controller="Blogs" asp-action="Details" asp-route-Id="@item.Id">@item.Title</a>
+                            </h2>
+
+                            <div class="d-flex align-items-center">
+                                <img src="~/Files/images/784111dc-fb7d-4559-a32f-f1d332e95ce0327120580_735441204605280_4612680886388996307_n.jpg" alt="@User.Identity?.Name photo" class="img-fluid post-author-img flex-shrink-0">
+                                <div class="post-meta">
+                                    <p class="post-author">@User.Identity?.Name</p>
+                                    <p class="post-date">
+                                        <time datetime="2022-01-01">@item.CreatedAt</time>
+                                    </p>
+                                </div>
+                            </div>
+
+                        </article>
+                    </div>
+
+                    <!-- End post list item -->
+                }
+            }
+            else
+            {
+                <p>No blogs available.</p>
+            }
+
+
+        </div>
+    </div>
+
+</section><!-- /Blog Posts Section -->
+<!-- Blog Pagination Section -->
+<section id="blog-pagination" class="blog-pagination section">
+    <div class="container">
+        <div class="d-flex justify-content-center">
+            <nav aria-label="Blog Pagination">
+                <ul class="pagination">
+
+                    <!-- Previous Page -->
+                    @if ( (int)currentpage > 1)
+                    {
+                        <li class="page-item">
+                            <a class="page-link" href="@Url.Action("Index", new { page = (int)ViewData["CurrentPage"] - 1 })" aria-label="Previous">
+                                <span aria-hidden="true"><i class="bi bi-chevron-left"></i></span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                        </li>
+                    }
+
+                    <!-- Page Numbers -->
+                    @for (int i = 1; i <= (int)ViewData["TotalPages"]; i++)
+                    {
+                        if (i == (int)ViewData["CurrentPage"])
+                        {
+                            <li class="page-item active" aria-current="page">
+                                <a class="page-link" href="#">@i</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="page-item">
+                                <a class="page-link" href="@Url.Action("Index", new { page = i })">@i</a>
+                            </li>
+                        }
+                    }
+
+                    <!-- Next Page -->
+                    @if ((int)ViewData["CurrentPage"] < (int)ViewData["TotalPages"])
+                    {
+                        <li class="page-item">
+                            <a class="page-link" href="@Url.Action("Index", new { page = (int)ViewData["CurrentPage"] + 1 })" aria-label="Next">
+                                <span aria-hidden="true"><i class="bi bi-chevron-right"></i></span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </li>
+                    }
+
+                </ul>
+            </nav>
+        </div>
+    </div>
+</section><!-- /Blog Pagination Section -->

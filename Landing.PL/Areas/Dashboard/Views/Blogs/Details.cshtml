@@ -16,7 +16,8 @@
             <h3 class="card-title">Blog Title is @Model.Title</h3>
         </div>
         <div class="card-body">
-           
+           <div class="post">
+                <img class="img-lg img-rounded" src="~/Files/images/@Model.ImageName" alt="this is blog image :@Model.Title">
 
                 <p class="font-weight-bolder " style="color:black">
                     Description Short :@Model.DescriptionShort
@@ -24,10 +25,11 @@
             <p class="font-weight-bolder " style="color:black">
                 Description Long :@Html.Raw(@Model.DescriptionLong)
             </p>
-             
+            </div>
         </div>
-        <div class="card-footer">
+        <div class="card-footer ">
             <span class=" text-sm">CreatedAt : @Model.CreatedAt</span>
+            <a class="btn btn-secondary btn-md  " asp-controller="Blogs" asp-action="Index">Back</a>
         </div>
     </div>
 </div>

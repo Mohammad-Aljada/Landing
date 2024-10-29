@@ -22,7 +22,7 @@ namespace Landing.PL.Areas.Dashboard.Controllers
         }
 
         public IActionResult Index()
-        {             
+        {        
             return View(mapper.Map<IEnumerable<ServiceVM>>(context.Services.ToList()));
         }
         [HttpGet]

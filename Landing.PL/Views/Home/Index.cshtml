@@ -1,8 +1,205 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+@{
+    ViewData["Title"] = "Home Page";
+    
+    var sliders = ViewData["sliders"] as IEnumerable<SliderDisplayVM>;
+    var services = ViewData["services"] as IEnumerable<ServiceDisplayVM>;
+}
+<!-- Hero Section -->
+<section id="hero" class="hero section dark-background">
+
+    <!-- <img src="~/asset/img/hero-bg.jpg" alt="" data-aos="fade-in"> -->
+
+    <div id="hero-carousel" class="carousel carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
+
+        <div class="container position-relative">
+
+            @if (sliders != null && sliders.Any())
+            {
+                // Convert the IEnumerable to a List
+                var sliderList = sliders.ToList();
+
+                for (int i = 0; i < sliderList.Count; i++)
+                {
+                    var item = sliderList[i];
+                    // Set the active class only for the first item (index 0)
+                    var activeClass = (i == 0) ? "active" : "";
+                    <div class="carousel-item @activeClass">
+                        <div class="carousel-container">
+                            <h2>@item.Title</h2>
+                            <p>@Html.Raw(item.Description)</p>
+                            <a href="@item.Link" class="btn-get-started">Read More</a>
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <p>No sliders available.</p>
+            }
+            <!-- End Carousel Item -->
+            <a class="carousel-control-prev" href="#hero-carousel" role="button" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>
+            </a>
+
+            <a class="carousel-control-next" href="#hero-carousel" role="button" data-bs-slide="next">
+                <span class="carousel-control-next-icon bi bi-chevron-right" aria-hidden="true"></span>
+            </a>
+
+            <ol class="carousel-indicators"></ol>
+
+        </div>
+
+    </div>
+
+</section><!-- /Hero Section -->
+<!-- Featured Services Section -->
+<section id="featured-services" class="featured-services section">
+
+    <div class="container">
+
+        <div class="row gy-4">
+
+            @if (services != null && services.Any())
+            {
+                @foreach (var item in services)
+                {
+                    <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                        <div class="service-item item-cyan position-relative">
+                            <div class="icon">
+                                <img src="~/Files/images/@item.ImageName" alt="@item.Name service photo" />
+                            </div>
+                            <a asp-action="Details" asp-controller="Services" asp-route-id="@item.Id" class="stretched-link">
+                                <h3>@item.Name</h3>
+                            </a>
+                            <p>@Html.Raw(item.Description)</p>
+                        </div>
+                    </div>
+
+                    <!-- End Service Item -->
+                }
+            }
+            else
+            {
+                <p>No services available.</p>
+            }
+        </div>
+
+    </div>
+
+</section><!-- /Featured Services Section -->
+<!-- About Section -->
+<section id="about" class="about section light-background">
+
+    <div class="container">
+
+        <div class="row gy-4">
+            <div class="col-lg-6 position-relative align-self-start" data-aos="fade-up" data-aos-delay="100">
+                <img src="~/asset/img/about.jpg" class="img-fluid" alt="this about photo section">
+                <a href="https://www.youtube.com/watch?v=Y7f98aduVJ8" class="glightbox pulsating-play-btn"></a>
+            </div>
+            <div class="col-lg-6 content" data-aos="fade-up" data-aos-delay="200">
+                <h3>Voluptatem dignissimos provident quasi corporis voluptates sit assumenda.</h3>
+                <p class="fst-italic">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+                    magna aliqua.
+                </p>
+                <ul>
+                    <li><i class="bi bi-check2-all"></i> <span>Ullamco laboris nisi ut aliquip ex ea commodo consequat.</span></li>
+                    <li><i class="bi bi-check2-all"></i> <span>Duis aute irure dolor in reprehenderit in voluptate velit.</span></li>
+                    <li><i class="bi bi-check2-all"></i> <span>Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla pariatur.</span></li>
+                </ul>
+                <p>
+                    Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+                    velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+</section><!-- /About Section -->
+<!-- Features Section -->
+<section id="features" class="features section">
+
+    <!-- Section Title -->
+    <div class="container section-title" data-aos="fade-up">
+        <h2>Features</h2>
+        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
+    </div><!-- End Section Title -->
+
+    <div class="container">
+
+        <div class="row gy-4 align-items-center features-item">
+            <div class="col-md-5 d-flex align-items-center" data-aos="zoom-out" data-aos-delay="100">
+                <img src="~/asset/img/features-1.svg" class="img-fluid" alt="this feauture photo">
+            </div>
+            <div class="col-md-7" data-aos="fade-up" data-aos-delay="100">
+                <h3>Voluptatem dignissimos provident quasi corporis voluptates sit assumenda.</h3>
+                <p class="fst-italic">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+                    magna aliqua.
+                </p>
+                <ul>
+                    <li><i class="bi bi-check"></i><span> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</span></li>
+                    <li><i class="bi bi-check"></i> <span>Duis aute irure dolor in reprehenderit in voluptate velit.</span></li>
+                    <li><i class="bi bi-check"></i> <span>Ullam est qui quos consequatur eos accusamus.</span></li>
+                </ul>
+            </div>
+        </div><!-- Features Item -->
+
+        <div class="row gy-4 align-items-center features-item">
+            <div class="col-md-5 order-1 order-md-2 d-flex align-items-center" data-aos="zoom-out" data-aos-delay="200">
+                <img src="~/asset/img/features-2.svg" class="img-fluid" alt="this feauture photo">
+            </div>
+            <div class="col-md-7 order-2 order-md-1" data-aos="fade-up" data-aos-delay="200">
+                <h3>Corporis temporibus maiores provident</h3>
+                <p class="fst-italic">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+                    magna aliqua.
+                </p>
+                <p>
+                    Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+                    velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+                    culpa qui officia deserunt mollit anim id est laborum
+                </p>
+            </div>
+        </div><!-- Features Item -->
+
+        <div class="row gy-4 align-items-center features-item">
+            <div class="col-md-5 d-flex align-items-center" data-aos="zoom-out">
+                <img src="~/asset/img/features-3.svg" class="img-fluid" alt="this feauture photo">
+            </div>
+            <div class="col-md-7" data-aos="fade-up">
+                <h3>Sunt consequatur ad ut est nulla consectetur reiciendis animi voluptas</h3>
+                <p>Cupiditate placeat cupiditate placeat est ipsam culpa. Delectus quia minima quod. Sunt saepe odit aut quia voluptatem hic voluptas dolor doloremque.</p>
+                <ul>
+                    <li><i class="bi bi-check"></i> <span>Ullamco laboris nisi ut aliquip ex ea commodo consequat.</span></li>
+                    <li><i class="bi bi-check"></i><span> Duis aute irure dolor in reprehenderit in voluptate velit.</span></li>
+                    <li><i class="bi bi-check"></i> <span>Facilis ut et voluptatem aperiam. Autem soluta ad fugiat</span>.</li>
+                </ul>
+            </div>
+        </div><!-- Features Item -->
+
+        <div class="row gy-4 align-items-center features-item">
+            <div class="col-md-5 order-1 order-md-2 d-flex align-items-center" data-aos="zoom-out">
+                <img src="~/asset/img/features-4.svg" class="img-fluid" alt="this feauture photo">
+            </div>
+            <div class="col-md-7 order-2 order-md-1" data-aos="fade-up">
+                <h3>Quas et necessitatibus eaque impedit ipsum animi consequatur incidunt in</h3>
+                <p class="fst-italic">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+                    magna aliqua.
+                </p>
+                <p>
+                    Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+                    velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+                    culpa qui officia deserunt mollit anim id est laborum
+                </p>
+            </div>
+        </div><!-- Features Item -->
+
+    </div>
+
+</section><!-- /Features Section -->

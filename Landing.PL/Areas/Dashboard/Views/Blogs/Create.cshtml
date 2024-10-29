@@ -1,5 +1,7 @@
 ﻿@model BlogFormVM
 
+
+
 @section titleStart {
   Blogs
 }
@@ -18,7 +20,7 @@ Blogs
         <!-- /.card-header -->
         <!-- form start -->
 
-        <form asp-controller="Blogs" asp-action="Create">
+        <form asp-controller="Blogs" asp-action="Create" enctype="multipart/form-data" >
             <div class="card-body">
                 <div class="form-group">
                     <label asp-for="Title">Blog Title</label>
@@ -31,6 +33,13 @@ Blogs
                 <div class="form-group">
                     <label asp-for="DescriptionLong">Description Long</label>
                     <input asp-for="DescriptionLong" class="form-control textarea" placeholder="Enter Description Long Required">
+                </div>
+                 <div class="form-group">
+                    <label asp-for="Image">Upload Image</label>
+                    <input asp-for="Image" class="imageInput" >
+                </div>
+                <div class="form-group">
+                   <img src="#" id="imagePreview" width="50" style="display:none" alt="this is image service" />
                 </div>
             </div>
             <!-- /.card-body -->
@@ -56,6 +65,19 @@ Blogs
             ],
             toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
         });
+              document.querySelector(".imageInput").addEventListener("change", (event) => {
+                const file = event.target.files[0];
+                const imagePreview = document.querySelector("#imagePreview");
+
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function (e) {
+                        imagePreview.src = e.target.result;
+                        imagePreview.style.display = "block";
+                    }
+                    reader.readAsDataURL(file);
+                }
+            });
         
         </script>
 }

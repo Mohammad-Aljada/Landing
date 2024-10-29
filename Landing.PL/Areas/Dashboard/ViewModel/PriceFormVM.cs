@@ -8,5 +8,7 @@
         public int Discount { get; set; } = 0;
         public bool IsDeleted { get; set; }
         public decimal FinalPrice { get; set; }
+        public List<string> Features { get; set; }
+
     }
 }

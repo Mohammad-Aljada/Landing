@@ -6,5 +6,8 @@
         public string Title { get; set; }
         public string DescriptionShort { get; set; }
         public string DescriptionLong { get; set; }
+        public IFormFile Image { get; set; }
+
+        public string? ImageName { get; set; }
     }
 }

@@ -1,0 +1,56 @@
+﻿@section style{
+    <style>
+        .active{
+            font-weight: bold;
+            color: #68a4c4;
+        }
+    </style>
+}
+
+<header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+
+        <a href="index.html" class="logo d-flex align-items-center">
+            <!-- Uncomment the line below if you also wish to use an image logo -->
+            <!-- <img src="assets/img/logo.png" alt=""> -->
+            <h1 class="sitename">Moderna</h1>
+        </a>
+
+        <nav id="navmenu" class="navmenu">
+            <ul>
+                <li class="nav-item">
+                    <a asp-controller="Home" asp-action="Index" class="@(IsActive("Home"))">Home</a>
+                </li>
+                <li class ="nav-item">
+                    <a asp-controller="About" asp-action="Index" class="@(IsActive("About"))">About</a>
+                </li>
+                <li class="nav-item">
+                    <a asp-controller="Services" asp-action="Index" class="@(IsActive("Services"))">Services</a>
+                </li>
+                <li class="nav-item">
+                    <a asp-controller="Portfolios" asp-action="Index" class="@(IsActive("Portfolios"))">Portfolio</a>
+                </li>
+                <li class="nav-item">
+                    <a asp-controller="Teams" asp-action="Index" class="@(IsActive("Teams"))">Team</a>
+                </li>
+                <li class ="nav-item">
+                    <a asp-controller="Blogs" asp-action="Index" class="@(IsActive("Blogs"))">Blog</a>
+                </li>
+                <partial name="_LoginPartial" />
+                <li class="nav-item">
+                    <a asp-controller="Contact" asp-action="Index"  class="@(IsActive("Contact"))">Contact</a>
+                </li>
+            </ul>
+ 
+            <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+        </nav>
+        @functions {
+            private string IsActive(string controllerName)
+            {
+                var currentController = ViewContext.RouteData.Values["controller"]?.ToString();
+                return string.Equals(currentController, controllerName, StringComparison.OrdinalIgnoreCase) ? "active" : "";
+            }
+        }
+
+    </div>
+</header>

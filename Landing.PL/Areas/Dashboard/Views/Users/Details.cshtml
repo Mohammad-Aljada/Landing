@@ -1,0 +1,50 @@
+﻿@model UserDetailsVM
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Areas/Dashboard/Views/Shared/_Layout.cshtml";
+}
+
+@section titleStart {
+    Users
+}
+@section titleSeceond {
+    Details User
+}
+
+@section Header {
+    Details User
+}
+<div class="col-md-12">
+    <div class="card card-primary">
+        <div class="card-header">
+            <h3 class="card-title">User Name is @Model.UserName</h3>
+        </div>
+        <div class="card-body">
+            <div class="post">
+                <img class="img-lg img-rounded" src="~/Files/images/@Model.ImageName" alt="this is your image :@Model.UserName">
+
+                <p class="font-weight-bolder " style="color:black">
+                    Email : @Model.Email
+                </p>
+                <p class="font-weight-bold " style="color:black">
+                    Phone Number : @Model.PhoneNumber
+                </p>
+                <p class="font-weight-bold " style="color:black">
+                    Address : @Model.Address
+                </p>
+                <p class="font-weight-bold text-sm">
+                    Plan is : @Model.Price
+                </p>
+                <p class="font-weight-bold text-sm">
+                    Role Name is : @Model.RoleName
+                </p>
+            </div>
+        </div>
+        <div class="card-footer">
+            <a class="btn btn-secondary btn-md" asp-controller="Users" asp-action="Index">Back</a>
+
+        </div>
+    </div>
+</div>
+
+

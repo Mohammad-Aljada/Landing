@@ -28,6 +28,14 @@ Prices
                     <label asp-for="InitalPrice"> Initial Price</label>
                     <input asp-for="InitalPrice" class="form-control" placeholder="Enter Initial price value Required">
                 </div>
+                <div class="form-group" id="featuresContainer">
+                    <label asp-for="Features"> Features</label>
+                 
+                            <input asp-for="Features" class="form-control" placeholder="Enter Feature">
+                    
+                </div>
+                <button type="button" class="btn btn-secondary" onclick="addFeature()">Add Another Feature</button>
+
             </div>
             <!-- /.card-body -->
 
@@ -38,6 +46,28 @@ Prices
     </div>
 </div>
 
+@section script{
+    <script>
 
+        function addFeature() {
+            const container = document.getElementById('featuresContainer');
+          
+
+            // Create the input element
+            const input = document.createElement('input');
+            input.setAttribute('name', `Features`);
+            input.setAttribute('class', 'form-control');
+            input.setAttribute('placeholder', 'Enter Feature');
+            container.appendChild(input);
+
+          
+
+
+           
+
+          
+        }
+    </script>
+}
 
 

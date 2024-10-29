@@ -50,6 +50,9 @@ namespace Landing.DAL.Data.Migrations
                     b.Property<string>("FullName")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("ImageName")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
 
@@ -73,6 +76,12 @@ namespace Landing.DAL.Data.Migrations
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
 
+                    b.Property<int?>("PriceId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("RoleId")
+                        .HasColumnType("int");
+
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
 
@@ -93,54 +102,62 @@ namespace Landing.DAL.Data.Migrations
                         .HasDatabaseName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
+                    b.HasIndex("PriceId");
+
                     b.ToTable("AspNetUsers", (string)null);
 
                     b.HasData(
                         new
                         {
-                            Id = "68660409-57e6-4b3f-b0ef-dcc55e1750c1",
+                            Id = "82bc0005-9628-4806-8960-b8bdfc3287d5",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "ab6e11d6-c24b-4d62-8991-eca0063b6578",
+                            Address = "Tulkerm",
+                            ConcurrencyStamp = "a4a06854-328e-43b3-911f-6db246a64439",
                             Email = "Admin@Admin.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@ADMIN.com",
                             NormalizedUserName = "ADMIN@ADMIN.com",
-                            PasswordHash = "AQAAAAIAAYagAAAAEJMTFvBxGCD0GzMWhfIVoGWp1b0W0rwCHMgFuMy9AK/jyvCao5x5IedkXGgdYdOWBA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEC9mqtBfMbF/FpdteyQihQuShb6Vj40jEXbRLBz+vywMxM3/mjpoNlhbnfojgY3mGw==",
+                            PhoneNumber = "0568524048",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "a6812160-0150-4505-baff-c033e1feaa09",
+                            SecurityStamp = "184508b3-6fbc-4c15-aecd-b7c96fed3841",
                             TwoFactorEnabled = false,
                             UserName = "Admin@Admin.com"
                         },
                         new
                         {
-                            Id = "dc0ba6ab-260d-4c44-b8ea-f0cc22c1d754",
+                            Id = "bb48745e-3165-49c3-a3c0-df95fe74e78f",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "5ffbd956-8d86-4b05-9462-818208b81c3c",
+                            Address = "Tulkerm",
+                            ConcurrencyStamp = "ff96d020-3b1b-4231-a7ac-490fae52a8f5",
                             Email = "SuperAdmin@SuperAdmin.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "SUPERADMIN@SUPERADMIN.com",
                             NormalizedUserName = "SUPERADMIN@SUPERADMIN.com",
-                            PasswordHash = "AQAAAAIAAYagAAAAEMj/XOjRdA3a/O9kb/2Ojl5/fTmtPkuurfhsImWMzlilKFC+6+5/BLRHLg2SkAZSiQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEHAOQwLydKg/4IqxsqwIwPG0YHEUSzxVEvgCol48KxWWJ7lyRirbrBURmrxJceB/uQ==",
+                            PhoneNumber = "0568524048",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "a6f9160c-82af-4610-a7f5-dba8fe1358e7",
+                            SecurityStamp = "a947a59c-246e-4a56-9315-04562a878357",
                             TwoFactorEnabled = false,
                             UserName = "SuperAdmin@SuperAdmin.com"
                         },
                         new
                         {
-                            Id = "ed3633f6-5839-4bab-b5e0-57545854c760",
+                            Id = "ec4ce338-401d-4566-801a-95d4ad5f5ac5",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "f73bfccf-8955-428d-8bd8-292e376fe5c8",
+                            Address = "Tulkerm",
+                            ConcurrencyStamp = "c322576b-a574-4e77-8748-5f41a63e872c",
                             Email = "User@User.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "USER@USER.com",
                             NormalizedUserName = "USER@USER.com",
-                            PasswordHash = "AQAAAAIAAYagAAAAED08tzlGB2XMeyI9B9gr+moHZMY6Sx5lJMry5Tq31sQ7y1GShdmGBLllM/XVTeyBrw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAELk14ZWxIwtaeqRnmOrYRlNmF+w/R2951P4w+QkeFy/Vuy134857VvunKxA205kSMQ==",
+                            PhoneNumber = "0568524048",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "325bd3d9-4da9-41dc-96ba-5261f52c1af6",
+                            SecurityStamp = "10b8644f-77d1-45d6-9430-f668e610787a",
                             TwoFactorEnabled = false,
                             UserName = "User@User.com"
                         });
@@ -162,6 +179,10 @@ namespace Landing.DAL.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("DescriptionShort")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImageName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -199,6 +220,37 @@ namespace Landing.DAL.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Clients");
+                });
+
+            modelBuilder.Entity("Landing.DAL.Models.Comment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("BlogId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BlogId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Comments");
                 });
 
             modelBuilder.Entity("Landing.DAL.Models.Item", b =>
@@ -273,6 +325,10 @@ namespace Landing.DAL.Data.Migrations
 
                     b.Property<int>("Discount")
                         .HasColumnType("int");
+
+                    b.Property<string>("Features")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("FinalPrice")
                         .HasColumnType("int");
@@ -384,6 +440,50 @@ namespace Landing.DAL.Data.Migrations
                     b.ToTable("Sliders");
                 });
 
+            modelBuilder.Entity("Landing.DAL.Models.Team", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("FacebookLink")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImageName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("InstgramLink")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LinkendInLink")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("bio")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("specialty")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Teams");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
@@ -413,19 +513,19 @@ namespace Landing.DAL.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "04083a8d-5784-4a9a-8be5-07603a84523a",
+                            Id = "3ed5e005-3a06-4095-8916-02a64a90b0bd",
                             Name = "SuperAdmin",
                             NormalizedName = "SUPERADMIN"
                         },
                         new
                         {
-                            Id = "f8ce624e-50dd-42e1-a1b6-44597474393f",
+                            Id = "21b230ff-0f8d-4cab-bd71-e45587841e3d",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "0cd7ee3f-e62c-4079-a0cf-641a9117287e",
+                            Id = "92132bba-18bd-4d1a-bb7a-72f3475eaee0",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -520,18 +620,18 @@ namespace Landing.DAL.Data.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "dc0ba6ab-260d-4c44-b8ea-f0cc22c1d754",
-                            RoleId = "04083a8d-5784-4a9a-8be5-07603a84523a"
+                            UserId = "bb48745e-3165-49c3-a3c0-df95fe74e78f",
+                            RoleId = "3ed5e005-3a06-4095-8916-02a64a90b0bd"
                         },
                         new
                         {
-                            UserId = "68660409-57e6-4b3f-b0ef-dcc55e1750c1",
-                            RoleId = "f8ce624e-50dd-42e1-a1b6-44597474393f"
+                            UserId = "82bc0005-9628-4806-8960-b8bdfc3287d5",
+                            RoleId = "21b230ff-0f8d-4cab-bd71-e45587841e3d"
                         },
                         new
                         {
-                            UserId = "ed3633f6-5839-4bab-b5e0-57545854c760",
-                            RoleId = "0cd7ee3f-e62c-4079-a0cf-641a9117287e"
+                            UserId = "ec4ce338-401d-4566-801a-95d4ad5f5ac5",
+                            RoleId = "92132bba-18bd-4d1a-bb7a-72f3475eaee0"
                         });
                 });
 
@@ -552,6 +652,34 @@ namespace Landing.DAL.Data.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens", (string)null);
+                });
+
+            modelBuilder.Entity("Landing.DAL.Models.ApplicationUser", b =>
+                {
+                    b.HasOne("Landing.DAL.Models.Price", "Price")
+                        .WithMany("Users")
+                        .HasForeignKey("PriceId");
+
+                    b.Navigation("Price");
+                });
+
+            modelBuilder.Entity("Landing.DAL.Models.Comment", b =>
+                {
+                    b.HasOne("Landing.DAL.Models.Blog", "Blog")
+                        .WithMany("Comments")
+                        .HasForeignKey("BlogId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Landing.DAL.Models.ApplicationUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Blog");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Landing.DAL.Models.Item", b =>
@@ -616,9 +744,19 @@ namespace Landing.DAL.Data.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Landing.DAL.Models.Blog", b =>
+                {
+                    b.Navigation("Comments");
+                });
+
             modelBuilder.Entity("Landing.DAL.Models.Portfolio", b =>
                 {
                     b.Navigation("Items");
+                });
+
+            modelBuilder.Entity("Landing.DAL.Models.Price", b =>
+                {
+                    b.Navigation("Users");
                 });
 #pragma warning restore 612, 618
         }

@@ -2,6 +2,7 @@
 using Landing.DAL.Data;
 using Landing.DAL.Models;
 using Landing.PL.Areas.Dashboard.ViewModel;
+using Landing.PL.Helper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -40,7 +41,8 @@ namespace Landing.PL.Areas.Dashboard.Controllers
                 return View(blogFormVM);
             }
 
-          
+
+            blogFormVM.ImageName = FileSettings.UploadFile(blogFormVM.Image, "images");
 
             var blog = mapper.Map<Blog>(blogFormVM);
             context.Add(blog);
@@ -74,17 +76,30 @@ namespace Landing.PL.Areas.Dashboard.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Edit(BlogFormVM blogFormVM)
         {
-            if (!ModelState.IsValid)
-            {
-                return View(blogFormVM);
-            }
+          
 
             var blog = context.Blogs.Find(blogFormVM.Id);
             if (blog is null)
             {
                 return NotFound();
             }
-           
+            if (blogFormVM.Image is null)
+            {
+                ModelState.Remove("Image");
+            }
+            else
+            {
+                FileSettings.DeleteFile(blog.ImageName, "images");
+                blogFormVM.ImageName = FileSettings.UploadFile(blogFormVM.Image, "images");
+
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return View(blogFormVM);
+            }
+
+
             mapper.Map(blogFormVM, blog);
             context.SaveChanges();
             return RedirectToAction(nameof(Index));

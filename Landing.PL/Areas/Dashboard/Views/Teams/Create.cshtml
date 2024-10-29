@@ -1,0 +1,89 @@
+﻿@model TeamFormVM
+
+
+
+@section titleStart {
+    Teams
+}
+@section titleSeceond {
+    Create Team
+}
+@section Header {
+  Teams
+}
+<div class="col-md-12">
+    <div class="card card-primary">
+        <div class="card-header">
+            <h3 class="card-title">Create Team</h3>
+        </div>
+        <!-- /.card-header -->
+        <!-- form start -->
+
+        <form asp-controller="Teams" asp-action="Create" enctype="multipart/form-data">
+            <div class="card-body">
+                <div class="form-group">
+                    <label asp-for="Name">Member Name </label>
+                    <input asp-for="Name" class="form-control" placeholder="Enter Member Name  Required">
+                </div>
+                <div class="form-group">
+                    <label asp-for="bio">About Member</label>
+                    <input asp-for="bio" class="form-control" placeholder="Enter About Member Required">
+                </div>
+                <div class="form-group">
+                    <label asp-for="specialty">specialty  Member</label>
+                    <input asp-for="specialty" class="form-control " placeholder="Enter specialty Member Required">
+                </div>
+                <div class="form-group">
+                    <label asp-for="FacebookLink">Facebook Link</label>
+                    <input asp-for="FacebookLink" class="form-control" placeholder="Enter Facebook Link Required">
+                </div>
+
+                    <div class="form-group">
+                        <label asp-for="LinkendInLink">LinkendIn Link</label>
+                        <input asp-for="LinkendInLink" class="form-control " placeholder="Enter LinkendIn Link Required">
+                    </div>
+
+                        <div class="form-group">
+                            <label asp-for="InstgramLink">Instgram Link</label>
+                            <input asp-for="InstgramLink" class="form-control " placeholder="Enter Instgram Link Required">
+                        </div>
+                <div class="form-group">
+                    <label asp-for="Image">Upload Image</label>
+                    <input asp-for="Image" class="imageInput">
+                </div>
+                <div class="form-group">
+                    <img src="#" id="imagePreview" width="50" style="display:none" alt="this is image service" />
+                </div>
+
+
+            </div>
+            <!-- /.card-body -->
+
+            <div class="card-footer">
+                <button type="submit" class="btn btn-primary">Create</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section script {
+    <script src="https://cdn.tiny.cloud/1/6flbm5mj6i3yf3fgi2p9ij1bsfnjsu15kmtzer7qs3vfeq43/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
+
+    <script>
+      
+        document.querySelector(".imageInput").addEventListener("change", (event) => {
+            const file = event.target.files[0];
+            const imagePreview = document.querySelector("#imagePreview");
+
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    imagePreview.src = e.target.result;
+                    imagePreview.style.display = "block";
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
+}
+
