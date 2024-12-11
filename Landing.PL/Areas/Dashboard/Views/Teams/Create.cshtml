@@ -24,32 +24,46 @@
                 <div class="form-group">
                     <label asp-for="Name">Member Name </label>
                     <input asp-for="Name" class="form-control" placeholder="Enter Member Name  Required">
+                    <span asp-validation-for="Name" class="text-danger"></span>
+
                 </div>
                 <div class="form-group">
                     <label asp-for="bio">About Member</label>
                     <input asp-for="bio" class="form-control" placeholder="Enter About Member Required">
+                    <span asp-validation-for="bio" class="text-danger"></span>
+
                 </div>
                 <div class="form-group">
                     <label asp-for="specialty">specialty  Member</label>
                     <input asp-for="specialty" class="form-control " placeholder="Enter specialty Member Required">
+                    <span asp-validation-for="specialty" class="text-danger"></span>
+
                 </div>
                 <div class="form-group">
                     <label asp-for="FacebookLink">Facebook Link</label>
                     <input asp-for="FacebookLink" class="form-control" placeholder="Enter Facebook Link Required">
+                    <span asp-validation-for="FacebookLink" class="text-danger"></span>
+
                 </div>
 
                     <div class="form-group">
                         <label asp-for="LinkendInLink">LinkendIn Link</label>
                         <input asp-for="LinkendInLink" class="form-control " placeholder="Enter LinkendIn Link Required">
+                    <span asp-validation-for="LinkendInLink" class="text-danger"></span>
+
                     </div>
 
                         <div class="form-group">
                             <label asp-for="InstgramLink">Instgram Link</label>
                             <input asp-for="InstgramLink" class="form-control " placeholder="Enter Instgram Link Required">
+                    <span asp-validation-for="InstgramLink" class="text-danger"></span>
+
                         </div>
                 <div class="form-group">
                     <label asp-for="Image">Upload Image</label>
                     <input asp-for="Image" class="imageInput">
+                    <span asp-validation-for="Image" class="text-danger"></span>
+
                 </div>
                 <div class="form-group">
                     <img src="#" id="imagePreview" width="50" style="display:none" alt="this is image service" />

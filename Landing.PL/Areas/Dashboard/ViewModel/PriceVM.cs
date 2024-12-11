@@ -2,6 +2,8 @@
 {
     public class PriceVM
     {
+        
+
         public int Id { get; set; }
         public string Name { get; set; }
         public int InitalPrice { get; set; }

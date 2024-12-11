@@ -5,6 +5,7 @@ namespace Landing.PL.ViewModels
     public class RegisterVM
     {
         [Required(ErrorMessage ="UserName is Required..!")]
+        [MinLength(3)]
         public string UserName { get; set; }
         [Required(ErrorMessage = "Password is Required..!")]
         [DataType(DataType.Password)]

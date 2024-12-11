@@ -24,14 +24,20 @@
             <div class="form-group">
                 <label asp-for="Name">Service Name</label>
                 <input asp-for="Name" class="form-control" placeholder="Enter Service Name Required">
+                <span asp-validation-for="Name" class="text-danger"></span>
+
             </div>
             <div class="form-group">
                 <label asp-for="Description">Description</label>
                     <input asp-for="Description" class="form-control textarea" placeholder="Enter Service Description Required">
+                    <span asp-validation-for="Description" class="text-danger"></span>
+
             </div>
                 <div class="form-group">
                     <label asp-for="Image">Upload Image</label>
                     <input asp-for="Image" class="imageInput" >
+                    <span asp-validation-for="Image" class="text-danger"></span>
+
                 </div>
                 <div class="form-group">
                    <img src="#" id="imagePreview" width="50" style="display:none" alt="this is image service" />

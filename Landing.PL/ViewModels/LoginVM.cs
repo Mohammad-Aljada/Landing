@@ -9,7 +9,6 @@ namespace Landing.PL.ViewModels
 
         public string Password { get; set; }
         [Required(ErrorMessage = "EMAIL is Required..!")]
-        [MinLength(5)]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 

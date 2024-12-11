@@ -25,10 +25,14 @@
                 <div class="form-group">
                     <label asp-for="Title">Item Title</label>
                     <input asp-for="Title" class="form-control" placeholder="Enter Item Title Required">
+                    <span asp-validation-for="Title" class="text-danger"></span>
+
                 </div>
                 <div class="form-group">
                     <label asp-for="Description">Description</label>
                     <input  asp-for="Description" class="form-control textarea" placeholder="Enter Item Description Required">
+                    <span asp-validation-for="Description" class="text-danger"></span>
+
                 </div>
                 <div class="form-group">
                     <label asp-for="PortfolioId">Select Portfolio</label>
@@ -38,6 +42,8 @@
                 <div class="form-group">
                     <label asp-for="Image">Upload Image</label>
                     <input asp-for="Image" class="imageInput">
+                    <span asp-validation-for="Image" class="text-danger"></span>
+
                 </div>
                 <div class="form-group">
                     <img src="#" id="imagePreview" width="50" style="display:none" alt="this is image service" />

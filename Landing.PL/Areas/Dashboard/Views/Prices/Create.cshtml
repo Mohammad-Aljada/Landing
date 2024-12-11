@@ -23,10 +23,14 @@ Prices
                 <div class="form-group">
                     <label asp-for="Name"> subscripe Name</label>
                     <input asp-for="Name" class="form-control" placeholder="Enter subscripe Name Required">
+                    <span asp-validation-for="Name" class="text-danger"></span>
+
                 </div>
                 <div class="form-group">
                     <label asp-for="InitalPrice"> Initial Price</label>
                     <input asp-for="InitalPrice" class="form-control" placeholder="Enter Initial price value Required">
+                    <span asp-validation-for="InitalPrice" class="text-danger"></span>
+
                 </div>
                 <div class="form-group" id="featuresContainer">
                     <label asp-for="Features"> Features</label>

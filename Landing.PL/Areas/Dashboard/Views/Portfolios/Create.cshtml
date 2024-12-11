@@ -23,6 +23,8 @@
                 <div class="form-group">
                     <label asp-for="Name"> Portfolio Name</label>
                     <input asp-for="Name" class="form-control" placeholder="Enter Portfolios Name Required">
+                    <span asp-validation-for="Name" class="text-danger"></span>
+
                 </div>
             </div>
             <!-- /.card-body -->

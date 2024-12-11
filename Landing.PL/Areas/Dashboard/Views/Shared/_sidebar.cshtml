@@ -139,6 +139,29 @@
                     <a href="#" class="nav-link @(IsActive("Users"))">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
+                          Team
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a asp-controller="Teams" asp-action="Index" class="nav-link @(IsActive("Teams", "Index"))">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>All Team</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a asp-controller="Teams" asp-action="Create" class="nav-link @(IsActive("Teams", "Create"))">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Create Team</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item menu-open">
+                    <a href="#" class="nav-link @(IsActive("Users"))">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p>
                             Users
                             <i class="right fas fa-angle-left"></i>
                         </p>
@@ -164,7 +187,7 @@
                 @if (SignInManager.IsSignedIn(User))
                 {
                     <li class="nav-item d-flex gap-1 p-1">
-                        <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Account", "Login", new { area = "Identity" })">
+                        <form asp-area="" asp-controller="Account" asp-action="Logout" asp-route-returnUrl="@Url.Action("Login", "Account", new { area = "" })" method="post">
                             <img src="~/Dashboard/img/logout.svg" width="20" alt="logout logo" style="margin:8px;" />
                             <button type="submit" class="btn btn-link text-danger">Logout</button>
                         </form>

@@ -83,12 +83,12 @@ namespace Landing.PL.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Login(LoginVM loginVM)
+        public async Task<IActionResult> Login([FromBody] LoginVM loginVM)
         {
             if (ModelState.IsValid)
             {
                 var user = await userManager.FindByEmailAsync(loginVM.Email);
-                if (user is not null)
+                if (user != null)
                 {
                     var check = await userManager.CheckPasswordAsync(user, loginVM.Password);
                     if (check)
@@ -96,12 +96,18 @@ namespace Landing.PL.Controllers
                         var result = await signInManager.PasswordSignInAsync(user, loginVM.Password, loginVM.RememberMe, false);
                         if (result.Succeeded)
                         {
-                            return RedirectToAction("Index", "Home");
+                            return Ok(new { success = true, message = "Login successful. Welcome." });
+                        }
+                        else
+                        {
+                            return BadRequest(new { success = false, message = "Login failed. Please check the input data." });
                         }
                     }
+                    return BadRequest(new { success = false, message = "Invalid login data." });
                 }
+                return BadRequest(new { success = false, message = "User not found." });
             }
-            return View(loginVM);
+            return BadRequest(new { success = false, message = "Invalid input. Please check the data and try again." });
         }
 
         public IActionResult ForgotPassword()
@@ -176,5 +182,19 @@ namespace Landing.PL.Controllers
 
             return View(profileViewModel);
         }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Logout(string returnUrl = null)
+        {
+            await signInManager.SignOutAsync();
+
+            if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
+            {
+                return Redirect(returnUrl);
+            }
+
+            return RedirectToAction("Login", "Account", new { area = "" });
+        }
+
     }
 }
